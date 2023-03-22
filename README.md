@@ -54,6 +54,35 @@ li-ji-weapp
 │  ├── app.wxss
 
 ```
+### 安装教程
+下载代码导入到微信开发者工具，<br>
+在miniprogram终端执行 ```npm init -y```，使用默认信息初始化<br>
+在miniprogram终端执行```npm i @vant/weapp -S –production```<br>
+app.js里修改<br>
+```
+import {
+    mpserverless
+} from './alicloud/index'
+```
+替换为
+```
+import MPServerless from '@alicloud/mpserverless-sdk'
+const mpserverless = new MPServerless(wx, {
+    appId: 'wx小程序appid',
+    spaceId: '阿里云服务空间id',
+    clientSecret: '阿里云服务秘钥',
+    endpoint: 'https://api.next.bspapp.com',
+    timeout: 40 * 1000
+});
+```
+在阿里云的serverless里创建数据表，
+```
+book、family、family_member、friend、gift_out、gift_receive、user
+```
+serverless里记得绑定微信小程序的appid和secret，<br>
+微信小程序那边记得绑定阿里云的域名。<br>
+Request域名是https://api.next.bspapp.com<br>
+download和upload域名在serverless里有个上传域名<br>
 
 ### 作者
 <table>
